@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+:root {
+    --primary-color: #21666E;
+    --secondary-color: #103450;
+    --dark-color: #303030;
+    --light-color: #F7D9C0;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Caveat', cursive;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    width: 100vw;
+    height: 100vh;
+}
+
+main{
+    background-color: var(--light-color);
+    width: auto;
+    height: auto;
+    color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+h1, h2 {
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 20px 0;
+    color: var(--dark-color)
+}
+
+a {
+    text-decoration: none; /*Remove underline from links*/
+    color: var(--dark-color);
+}
+
+p {
+    margin: 10px 0;
+}
+
+i {
+    width: auto;
+    height: auto;
+    color: var(--dark-color);
+}
+
+/* Header styling */
+
+.header {
+    background-color: var(--primary-color);
+    height: 10vh;
+}
+
+.header .flex {
+    justify-content: left;
+    align-content: center;
+}
+
+.header .logo {
+    color: var(--light-color);
+}
+
+
+/* Icons styling */
+
+.icons {
+    width: auto;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    visibility: hidden;
+}
+
+.icons .container {
+    width: 50vw;
+    height: 200px;
+    justify-content: space-evenly;
+}
+
+.icons h2 {
+    visibility: hidden;
+}
+
+.choices {
+    width: auto;
+    justify-content: center;
+    margin: 50px;
+}
+
+.your-choice {
+    visibility: hidden;
+}
+
+.computers-choice {
+    visibility: hidden;
+}
+
+.winner {
+    visibility: hidden;
+}
+
+/* Footer styling */
+.footer {
+    height: 220px;
+}
+
+.footer .social a {
+    margin: 0 10px;
+}
+
+/* Utilities styling */
+
+.container {
+    max-width: auto;
+    max-height: auto;
+    margin: 0 auto; /*Stretch beyond 1100px --> container will stay at 1100 px*/
+    overflow: auto; /*Remove 10px margin height defined for h1*/
+    padding: 0 20px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; /*Main alignment --> direction = row --> Horizontal*/
+    align-items: center; /*Cross alignment --> direction = row --> Vertical*/
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /*Main alignment --> direction = row --> Horizontal*/
+    align-items: center; /*Cross alignment --> direction = row --> Vertical*/
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*Create two columns with same size*/
+    gap: 20px; /*Add margin between grid items*/
+    justify-content: center;
+    align-items: center;
+    height: 100%; /*Needs to be added to have vertical centered alignment*/
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.btn {
+    display: inline-block; /*No line break after element*/
+    font-size: 2rem;;
+    padding: 10px 30px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: #f8f9fa;
+    border: none;
+    border-radius: 5px;
+    visibility: visible;
+}
+
+.btn-outline {
+    background-color: transparent; /*Same as parent*/
+    border: 1px #f8f9fa solid;
+}
+
+.btn:hover {
+    transform: scale(0.95); /*Make button a bit smaller when hovered over*/
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-dark, 
+.btn-dark {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+
+}
+
+/*Add own margin classes*/
+.m-1 {
+    margin: 1rem; /*Equals to 16px (if you don't change html font size)*/
+}
+.m-2 {
+    margin: 1.5rem; /*Equals to 24px (if you don't change html font size)*/
+}
+.m-3 {
+    margin: 2rem; /*Equals to 32px (if you don't change html font size)*/
+}
+.m-4 {
+    margin: 3rem; /*Equals to 48px (if you don't change html font size)*/
+}
+.m-5 {
+    margin: 4rem; /*Equals to 64px (if you don't change html font size)*/
+}
+
+.my-1 {
+    margin: 1rem 0; /*Only y-axis (top & bottom)*/
+}
+.my-2 {
+    margin: 1.5rem 0; /*Only y-axis (top & bottom)*/
+}
+.my-3 {
+    margin: 2rem 0; /*Only y-axis (top & bottom)*/
+}
+.my-4 {
+    margin: 3rem 0; /*Only y-axis (top & bottom)*/
+}
+.my-5 {
+    margin: 4rem 0; /*Only y-axis (top & bottom)*/
+}
+
+/*Add own padding classes*/
+.p-1 {
+    padding: 1rem; /*Equals to 16px (if you don't change html font size)*/
+}
+.p-2 {
+    padding: 1.5rem; /*Equals to 24px (if you don't change html font size)*/
+}
+.p-3 {
+    padding: 2rem; /*Equals to 32px (if you don't change html font size)*/
+}
+.p-4 {
+    padding: 3rem; /*Equals to 48px (if you don't change html font size)*/
+}
+.p-5 {
+    padding: 4rem; /*Equals to 64px (if you don't change html font size)*/
+}
+
+.py-1 {
+    padding: 1rem 0; /*Only y-axis (top & bottom)*/
+}
+.py-2 {
+    padding: 1.5rem 0; /*Only y-axis (top & bottom)*/
+}
+.py-3 {
+    padding: 2rem 0; /*Only y-axis (top & bottom)*/
+}
+.py-4 {
+    padding: 3rem 0; /*Only y-axis (top & bottom)*/
+}
+.py-5 {
+    padding: 4rem 0; /*Only y-axis (top & bottom)*/
+}
+
+/* Text sizes */
+.lead {
+    font-size: 20px;
+}
+
+.sm {
+    font-size: 1rem;
+}
+
+.md {
+    font-size: 2rem;
+}
+
+.lg {
+    font-size: 3rem;
+}
+
+.xl {
+    font-size: 4rem;
+}
