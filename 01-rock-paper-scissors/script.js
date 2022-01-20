@@ -1,16 +1,13 @@
 // Click on play button:
-const buttons = document.querySelectorAll('.btn');
+const buttons = document.querySelector('.btn');
 
-for (let button of buttons) {
-    button.addEventListener('click', clickOnPlay = (event) => {
-        const getH2 = document.querySelector("h2");
-        getH2.style.visibility = "visible";
+buttons.addEventListener('click', clickOnPlay = (event) => {
+    const getH2 = document.querySelector("h2");
+    getH2.style.visibility = "visible";
 
-        const getIcons = document.querySelector(".icons");
-        getIcons.style.visibility = "visible";
-
-    }, { once: true })
-}
+    const getIcons = document.querySelector(".icons");
+    getIcons.style.visibility = "visible";
+})
 
 // Create random computer choice:
 const icons = document.querySelectorAll('.fas');
@@ -21,6 +18,7 @@ randomIcon = () => {
 };
 
 // Click on icons:
+
 for (let icon of icons) {
     icon.addEventListener('click', clickOnIcon = (event) => {
 
@@ -35,6 +33,11 @@ for (let icon of icons) {
         choice.append(addA);
         addA.appendChild(addI);
         addI.className = `fas ${event.target.classList[1]} fa-7x`;
+
+        // Add refresh possibility
+        buttons.addEventListener('click', clickOnPlay = (event) => {
+            history.go(0);
+        })
 
         // Make sure click event only happens once
     }, { once: true })
@@ -67,14 +70,8 @@ for (let icon of icons) {
 for (let icon of icons) {
     icon.addEventListener('click', clickOnIcon = (event) => {
 
-        // const result = document.querySelector(".winner");
-        // result.style.visibility = "visible";
-
         const playerResult = document.querySelector(".playersChoice i").className.slice(12, length - 6);
         const compResult = document.querySelector(".computersChoice i").className.slice(12, length - 6)
-
-        console.log(playerResult);
-        console.log(compResult);
 
         if (
             playerResult === "rock" && compResult === "rock" ||
@@ -102,6 +99,9 @@ for (let icon of icons) {
             addH1.className = "logo xl";
             addH1.innerHTML = "YOU LOSE!!! &#128520;"
             winnerTxt.append(addH1)
-        }
+        };
+
+        buttons.innerHTML = "Play again!";
+
     }, { once: true })
 }

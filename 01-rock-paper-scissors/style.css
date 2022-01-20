@@ -32,7 +32,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* align-items: space-evenly; */
     height: 100%;
 }
 
@@ -52,6 +51,10 @@ i {
     color: var(--dark-color);
 }
 
+.icons i:hover {
+    color: var(--primary-color);
+    transform: scale(0.95);
+}
 
 /* Header styling */
 .header .flex {
@@ -94,6 +97,10 @@ i {
     justify-content: center;
 }
 
+.winnerText {
+    font-family: 'Caveat', cursive;
+}
+
 
 /* Utilities styling */
 
@@ -117,20 +124,22 @@ i {
 }
 
 .btn {
-    display: inline-block; /*No line break after element*/
-    font-size: 2rem;;
+    display: inline-block;
+    font-size: 2.5rem;;
     padding: 10px 30px;
     cursor: pointer;
     background: var(--primary-color);
     color: var(--light-color);
     border: none;
     border-radius: 5px;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
     visibility: visible;
 }
 
 .btn-outline {
-    background-color: transparent; /*Same as parent*/
-    border: 1px #f8f9fa solid;
+    background-color: transparent;
+    border: 1px var(--light-color) solid;
 }
 
 .btn:hover {
@@ -141,9 +150,6 @@ i {
     text-align: center;
 }
 
-.winnerText {
-    font-family: 'Caveat', cursive;
-}
 
 .bg-dark, 
 .btn-dark {
