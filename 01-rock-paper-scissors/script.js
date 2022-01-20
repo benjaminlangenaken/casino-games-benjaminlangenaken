@@ -18,7 +18,6 @@ randomIcon = () => {
 };
 
 // Click on icons:
-
 for (let icon of icons) {
     icon.addEventListener('click', clickOnIcon = (event) => {
 
@@ -39,11 +38,6 @@ for (let icon of icons) {
         choice.append(addA);
         addA.appendChild(addI);
         addI.className = `fas ${event.target.classList[1]} fa-7x`;
-
-        // Add refresh possibility
-        buttons.addEventListener('click', clickOnPlay = (event) => {
-            history.go(0);
-        })
 
         // Make sure click event only happens once
     }, { once: true })
@@ -126,6 +120,11 @@ for (let icon of icons) {
         };
 
         buttons.innerHTML = "Play again!";
+
+        // Add refresh possibility
+        buttons.addEventListener('click', clickOnPlay = (event) => {
+            window.location.reload()
+        })
 
     }, { once: true })
 }
