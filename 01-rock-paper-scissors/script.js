@@ -83,14 +83,25 @@ for (let icon of icons) {
         ) {
             const winnerTxt = document.querySelector(".winnerText")
             const addH1 = document.createElement("h1");
-            addH1.className = "logo lg";
+            addH1.className = "logo xl";
             addH1.innerHTML = "It's a draw... &#128528;"
             winnerTxt.append(addH1)
-        } // else if {
-        //     playerResult === "rock" && compResult === "rock" ||
-        //     playerResult === "paper" && compResult === "paper" ||
-        //     playerResult === "scissors" && compResult === "scissors"
-        // }
-
+        } else if (
+            playerResult === "rock" && compResult === "scissors" ||
+            playerResult === "paper" && compResult === "rock" ||
+            playerResult === "scissors" && compResult === "paper"
+        ) {
+            const winnerTxt = document.querySelector(".winnerText")
+            const addH1 = document.createElement("h1");
+            addH1.className = "logo xl";
+            addH1.innerHTML = "YOU WIN!!! &#128512"
+            winnerTxt.append(addH1)
+        } else {
+            const winnerTxt = document.querySelector(".winnerText")
+            const addH1 = document.createElement("h1");
+            addH1.className = "logo xl";
+            addH1.innerHTML = "YOU LOSE!!! &#128520;"
+            winnerTxt.append(addH1)
+        }
     }, { once: true })
 }
