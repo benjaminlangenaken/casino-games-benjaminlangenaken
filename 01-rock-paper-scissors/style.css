@@ -49,11 +49,16 @@ a {
 
 i {
     color: var(--dark-color);
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    text-align: center;
 }
 
 .icons i:hover {
     color: var(--primary-color);
     transform: scale(0.95);
+    transition-duration: 0.6s;
 }
 
 /* Header styling */
@@ -91,6 +96,14 @@ i {
     justify-content: space-around;
 }
 
+.your-choice{
+    opacity: 0;
+}
+
+.computers-choice{
+    opacity: 0;
+}
+
 .winner .flex-center {
     flex-direction: row;
     align-content: center;
@@ -99,6 +112,7 @@ i {
 
 .winnerText {
     font-family: 'Caveat', cursive;
+    opacity: 0;
 }
 
 
@@ -144,6 +158,7 @@ i {
 
 .btn:hover {
     transform: scale(0.95); /*Make button a bit smaller when hovered over*/
+    transition-duration: 0.3s;
 }
 
 .text-center {

@@ -25,9 +25,15 @@ for (let icon of icons) {
         const addA = document.createElement("a");
         const addI = document.createElement("i");
 
+        icon.style.backgroundColor = "#2a9d8f";
+        icon.style.color = "#264653";
+        icon.style.transitionDuration = "0.8s";
+
         // Add players choice:
         const yourChoice = document.querySelector(".your-choice");
         yourChoice.style.visibility = "visible";
+        yourChoice.style.opacity = "1";
+        yourChoice.style.transitionDuration = "1.5s";
 
         const choice = document.querySelector(".playersChoice");
         choice.append(addA);
@@ -55,6 +61,9 @@ for (let icon of icons) {
         // Add computers choice:
         const computersChoice = document.querySelector(".computers-choice");
         computersChoice.style.visibility = "visible";
+        computersChoice.style.opacity = "1";
+        computersChoice.style.transitionDuration = "1.5s";
+        computersChoice.style.transitionDelay = "1s";
 
         const compChoice = document.querySelector(".computersChoice");
         compChoice.append(addA);
@@ -83,6 +92,11 @@ for (let icon of icons) {
             addH1.className = "logo xl";
             addH1.innerHTML = "It's a draw... &#128528;"
             winnerTxt.append(addH1)
+
+            winnerTxt.style.opacity = "1";
+            winnerTxt.style.transitionDuration = "1.5s";
+            winnerTxt.style.transitionDelay = "2s";
+
         } else if (
             playerResult === "rock" && compResult === "scissors" ||
             playerResult === "paper" && compResult === "rock" ||
@@ -93,12 +107,22 @@ for (let icon of icons) {
             addH1.className = "logo xl";
             addH1.innerHTML = "YOU WIN!!! &#128512"
             winnerTxt.append(addH1)
+
+            winnerTxt.style.opacity = "1";
+            winnerTxt.style.transitionDuration = "1.5s";
+            winnerTxt.style.transitionDelay = "2s";
+
         } else {
             const winnerTxt = document.querySelector(".winnerText")
             const addH1 = document.createElement("h1");
             addH1.className = "logo xl";
             addH1.innerHTML = "YOU LOSE!!! &#128520;"
             winnerTxt.append(addH1)
+
+            winnerTxt.style.opacity = "1";
+            winnerTxt.style.transitionDuration = "1.5s";
+            winnerTxt.style.transitionDelay = "2s";
+
         };
 
         buttons.innerHTML = "Play again!";
