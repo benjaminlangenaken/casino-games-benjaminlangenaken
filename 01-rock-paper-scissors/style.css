@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Orbitron&display=swap');
 
 :root {
-    --primary-color: #21666E;
-    --secondary-color: #103450;
-    --dark-color: #303030;
-    --light-color: #F7D9C0;
+    --primary-color: #2a9d8f;
+    --secondary-color: #e76f51;
+    --dark-color: #264653;
+    --light-color: #f8edeb;
 }
 
 * {
@@ -14,7 +14,8 @@
 }
 
 body {
-    font-family: 'Caveat', cursive;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
     background-color: var(--light-color);
     color: var(--dark-color);
     line-height: 1.6;
@@ -67,7 +68,7 @@ i {
 
 .icons {
     height: 25vh;
-    margin: 30px;
+    margin: 40px;
     padding: 20px;
     visibility: hidden;
 }
@@ -78,7 +79,7 @@ i {
 
 .choices {
     height: 30vh;
-    margin: 30px;
+    margin: 40px;
     padding: 20px;
     visibility: hidden;
 }
@@ -138,6 +139,10 @@ i {
 
 .text-center {
     text-align: center;
+}
+
+.winnerText {
+    font-family: 'Caveat', cursive;
 }
 
 .bg-dark, 
