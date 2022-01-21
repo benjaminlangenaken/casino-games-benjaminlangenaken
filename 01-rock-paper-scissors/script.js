@@ -1,7 +1,7 @@
 // Click on play button:
-const buttons = document.querySelector('.btn');
+const playButton = document.querySelector('.btn.play');
 
-buttons.addEventListener('click', clickOnPlay = (event) => {
+playButton.addEventListener('click', clickOnPlay = (event) => {
     const getH2 = document.querySelector("h2");
     getH2.style.visibility = "visible";
 
@@ -76,28 +76,27 @@ for (let icon of icons) {
         const playerResult = document.querySelector(".playersChoice i").className.slice(12, length - 6);
         const compResult = document.querySelector(".computersChoice i").className.slice(12, length - 6)
 
+        const winnerTxt = document.querySelector(".winnerText")
+        const addH1 = document.createElement("h1");
+
         if (
             playerResult === "rock" && compResult === "rock" ||
             playerResult === "paper" && compResult === "paper" ||
             playerResult === "scissors" && compResult === "scissors"
         ) {
-            const winnerTxt = document.querySelector(".winnerText")
-            const addH1 = document.createElement("h1");
             addH1.className = "logo xl";
             addH1.innerHTML = "It's a draw... &#128528;"
             winnerTxt.append(addH1)
 
             winnerTxt.style.opacity = "1";
             winnerTxt.style.transitionDuration = "1.5s";
-            winnerTxt.style.transitionDelay = "2s";
+            winnerTxt.style.transitionDelay = "1.5s";
 
         } else if (
             playerResult === "rock" && compResult === "scissors" ||
             playerResult === "paper" && compResult === "rock" ||
             playerResult === "scissors" && compResult === "paper"
         ) {
-            const winnerTxt = document.querySelector(".winnerText")
-            const addH1 = document.createElement("h1");
             addH1.className = "logo xl";
             addH1.innerHTML = "YOU WIN!!! &#128512"
             winnerTxt.append(addH1)
@@ -107,8 +106,6 @@ for (let icon of icons) {
             winnerTxt.style.transitionDelay = "2s";
 
         } else {
-            const winnerTxt = document.querySelector(".winnerText")
-            const addH1 = document.createElement("h1");
             addH1.className = "logo xl";
             addH1.innerHTML = "YOU LOSE!!! &#128520;"
             winnerTxt.append(addH1)
@@ -119,10 +116,10 @@ for (let icon of icons) {
 
         };
 
-        buttons.innerHTML = "Play again!";
+        playButton.innerHTML = "Play again!";
 
         // Add refresh possibility
-        buttons.addEventListener('click', clickOnPlay = (event) => {
+        playButton.addEventListener('click', clickOnPlay = (event) => {
             window.location.reload()
         })
 
