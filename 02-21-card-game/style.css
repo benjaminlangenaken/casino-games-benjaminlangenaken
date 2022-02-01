@@ -7,8 +7,6 @@
     --blue-color: #0d53b0;
     --dark-color: #03071e;
     --light-color: #ffe8d6;
-
-    --font-family: 'Cinzel', serif;
 }
 
 * {
@@ -20,7 +18,7 @@
 body {
     width: auto;
     min-height: 100vh;
-    font-family: var(--font-family);
+    font-family: 'Cinzel', serif;
     font-weight: 400;
     background-color: var(--light-color);
     background: url(./images/table.jpg);
@@ -172,7 +170,7 @@ a {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    font-family: var(--font-family);
+    font-family: 'Cinzel', serif;
     color: var(--light-color);
     font-weight: bold;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 8px;
