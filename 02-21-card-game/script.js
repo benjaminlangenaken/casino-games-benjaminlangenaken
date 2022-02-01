@@ -52,8 +52,6 @@ const you = game.player;
 const dealer = game.dealer;
 let winner = "none";
 
-const windowWidth = window.screen.width; // Adjust card size based on window screensize
-// const winner;
 
 let randomCard = () => {
     let randomIndex = Math.floor(Math.random() * 52);
@@ -84,7 +82,6 @@ const showScore = (activePlayer) => {
     if (activePlayer.score > 21) {
         document.querySelector(activePlayer.scoreSpan).innerText = `(${activePlayer.score})` + String.fromCodePoint(128565);
         document.querySelector(activePlayer.scoreSpan).style.color = "#c20d06";
-        document.querySelector(activePlayer.scoreSpan).style.textShadow = "1px 1px 1px #03071e";
 
         game.isBust = true;
         showWinner(dealer);
@@ -150,7 +147,7 @@ const showWinner = (winner) => {
 }
 
 const blackjackStand = () => {
-    if (game.pressOnce === false && game.isDealPressed === true) {
+    if (game.pressOnce === false && game.isDealPressed === true && game.isBust === false) {
         let card = randomCard();
         let dealerCards = document.querySelector(game.dealer.div).querySelectorAll("img");
         dealerCards[0].src = `./images/${card}.svg`;
@@ -161,6 +158,18 @@ const blackjackStand = () => {
         }
 
         showScore(dealer);
+
+        // Keep drawing cards for the dealer if score remains below 17
+        while (dealer.score < 17) {
+            let cardImage = document.createElement("img");
+            cardImage.src = `./images/${card}.svg`;
+            document.querySelector(dealer.div).appendChild(cardImage);
+
+            updateScore(card, dealer);
+            showScore(dealer);
+        }
+
+        console.log(card);
 
         game.isStand = true;
         game.isTurnsOver = true;
@@ -189,9 +198,6 @@ const blackjackDeal = () => {
         document.querySelector(".your-result").style.color = "#ffe8d6";
         document.querySelector(".dealer-result").style.color = "#ffe8d6";
         document.querySelector(".result").style.color = "#ffe8d6";
-
-        document.querySelector(".your-result").style.textShadow = "none";
-        document.querySelector(".dealer-result").style.textShadow = "none";
 
         for (let i = 0; i < yourImages.length; i++) {
             yourImages[i].remove();
