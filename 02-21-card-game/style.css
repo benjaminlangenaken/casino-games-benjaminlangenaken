@@ -49,6 +49,11 @@ h2 {
     line-height: 1.2;
     margin: 20px 0;
     color: var(--light-color);
+    text-shadow: 1px 1px 1px #03071e;
+}
+
+h2 span {
+    text-shadow: 1px 1px 1px #03071e;
 }
 
 a {
@@ -140,7 +145,7 @@ a {
 
 .container {
     max-width: 1100px;
-    height: auto;
+    max-height: 850px;
     margin: 0 auto; /*Stretch beyond 1100px --> container will stay at 1100 px*/
     text-align: center;
     overflow: auto; /*Remove 10px margin height defined for h1*/
@@ -183,7 +188,6 @@ a {
 .text-center {
     text-align: center;
 }
-
 
 .bg-dark, 
 .btn-dark {
