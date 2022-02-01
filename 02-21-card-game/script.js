@@ -30,7 +30,7 @@ const game = {
         "7": 7,
         "8": 8,
         "9": 9,
-        "10": 10,
+        "1": 10,
         "J": 10,
         "Q": 10,
         "K": 10,
@@ -79,9 +79,33 @@ let blackjackHit = (hitButton) => {
     if (game.isStand === false) {
         let card = randomCard();
         showCard(card, you);
-        console.log(card)
+        updateScore(card, you);
+        showScore(you);
     }
 }
 
 const hitButton = document.querySelector(".hit");
 hitButton.addEventListener("click", blackjackHit);
+
+const updateScore = (card, activePlayer) => {
+    if (card[0] === "A") {
+        if (activePlayer.score + game.cardsMap.A[1] <= 21) {
+            activePlayer.score += game.cardsMap.A[1]
+        } else {
+            activePlayer.score += game.cardsMap.A[0]
+        }
+    } else {
+        activePlayer.score += game.cardsMap[card[0]]
+    }
+    console.log(activePlayer.score)
+}
+
+const showScore = (activePlayer) => {
+    if (activePlayer.score > 21) {
+        document.querySelector(activePlayer.scoreSpan).innerText = `(${activePlayer.score})` + String.fromCodePoint(128565);
+        document.querySelector(activePlayer.scoreSpan).style.color = "#c20d06";
+        document.querySelector(activePlayer.scoreSpan).style.textShadow = "1px 1px 1px #03071e";
+    } else {
+        document.querySelector(activePlayer.scoreSpan).innerText = activePlayer.score;
+    }
+}
