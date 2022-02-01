@@ -93,9 +93,19 @@ const showScore = (activePlayer) => {
 }
 
 let blackjackHit = (hitButton) => {
-    if (game.isStand === false && game.isDealPressed === true && game.isBust === false) {
+    if (game.isStand === false && game.isDealPressed === true && game.isBust === false && game.isHit === false) {
         game.isHit = true;
 
+        // Give two cards on first hit
+        for (i = 0; i <= 1; i++) {
+            let card = randomCard();
+            showCard(card, you);
+            updateScore(card, you);
+            showScore(you);
+        }
+
+    } else if (game.isStand === false && game.isDealPressed === true && game.isBust === false && game.isHit === true) {
+        // Ony add one card for next hits
         let card = randomCard();
         showCard(card, you);
         updateScore(card, you);
@@ -172,8 +182,6 @@ const blackjackStand = () => {
             updateScore(card, dealer);
             showScore(dealer);
         }
-
-        console.log(card);
 
         game.isStand = true;
         game.isTurnsOver = true;
