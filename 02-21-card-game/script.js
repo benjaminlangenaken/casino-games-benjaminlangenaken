@@ -40,6 +40,7 @@ const game = {
     wins: 0,
     losses: 0,
     draws: 0,
+    isHit: false,
     isStand: false, // Check whether player has pressed 'Stand' button
     isTurnsOver: false, // Check if PC has finished with dealing cards
     pressOnce: false, // Prevent player from pressing buttons while it's the dealers turn
@@ -93,6 +94,8 @@ const showScore = (activePlayer) => {
 
 let blackjackHit = (hitButton) => {
     if (game.isStand === false && game.isDealPressed === true && game.isBust === false) {
+        game.isHit = true;
+
         let card = randomCard();
         showCard(card, you);
         updateScore(card, you);
@@ -147,7 +150,7 @@ const showWinner = (winner) => {
 }
 
 const blackjackStand = () => {
-    if (game.pressOnce === false && game.isDealPressed === true && game.isBust === false) {
+    if (game.pressOnce === false && game.isDealPressed === true && game.isBust === false && game.isHit === true) {
         let card = randomCard();
         let dealerCards = document.querySelector(game.dealer.div).querySelectorAll("img");
         dealerCards[0].src = `./images/${card}.svg`;
@@ -161,6 +164,7 @@ const blackjackStand = () => {
 
         // Keep drawing cards for the dealer if score remains below 17
         while (dealer.score < 17) {
+            let card = randomCard();
             let cardImage = document.createElement("img");
             cardImage.src = `./images/${card}.svg`;
             document.querySelector(dealer.div).appendChild(cardImage);
@@ -207,6 +211,7 @@ const blackjackDeal = () => {
             dealerImages[i].remove();
         }
 
+        game.isHit = false;
         game.isStand = false;
         game.pressOnce = false;
         game.isTurnsOver = false;
