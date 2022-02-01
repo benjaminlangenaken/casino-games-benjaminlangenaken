@@ -195,6 +195,7 @@ const blackjackStand = () => {
 const standButton = document.querySelector(".stand");
 standButton.addEventListener("click", blackjackStand);
 
+// Add DEAL functionality
 const blackjackDeal = () => {
     if (game.isTurnsOver === true || game.isDealPressed === false || game.isBust === true) {
         let yourImages = document.querySelector(".your-box").querySelectorAll("img");
@@ -244,3 +245,26 @@ const dealerCards = (card, dealer) => {
 
 const dealButton = document.querySelector(".deal");
 dealButton.addEventListener("click", blackjackDeal);
+
+// Add RESTART functionality
+const blackjackRestart = () => {
+    blackjackDeal();
+    document.querySelector(".wins").innerText = 0;
+    document.querySelector(".losses").innerText = 0;
+    document.querySelector(".draws").innerText = 0;
+
+    game.wins = 0;
+    game.losses = 0;
+    game.draws = 0;
+}
+
+const restartButton = document.querySelector(".restart");
+restartButton.addEventListener("click", blackjackRestart);
+
+// window.onload = animateButtons = () => {
+//         const animation =
+//     if (game.isDealPressed === false) {
+//         document.querySelector(".deal").style.animation = "scale(1.2)";
+//         document.querySelector(".deal").style.transition = "1s ease-in-out";
+//     }
+// }
