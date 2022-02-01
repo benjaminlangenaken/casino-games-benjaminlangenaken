@@ -19,7 +19,6 @@
 
 body {
     width: auto;
-    height: 100vh;
     font-family: var(--font-family);
     font-weight: 400;
     background-color: var(--light-color);

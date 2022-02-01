@@ -44,11 +44,13 @@ const game = {
     isTurnsOver: false, // Check if PC has finished with dealing cards
     pressOnce: false, // Prevent player from pressing buttons while it's the dealers turn
     isDealPressed: false,
+    isBust: false,
 }
 
 // Add variables for player and dealer:
 const you = game.player;
 const dealer = game.dealer;
+let winner = "none";
 
 const windowWidth = window.screen.width; // Adjust card size based on window screensize
 // const winner;
@@ -58,35 +60,13 @@ let randomCard = () => {
     return game.cards[randomIndex];
 }
 
-// let widthSize = () => {
-//     if (windowWidth > 1000) {
-//         let newWidthSize = window.screen.width * 0.07;
-//         return newWidthSize;
-//     } else {
-//         return window.screen.width * 0.18;
-//     }
-// }
-
 let showCard = (card, activePlayer) => {
     if (activePlayer.score <= 21) {
         let cardImage = document.createElement("img");
         cardImage.src = `./images/${card}.svg`;
-        // cardImage.style.width = `${widthSize()}px`;
         document.querySelector(activePlayer.div).appendChild(cardImage);
     }
 }
-
-let blackjackHit = (hitButton) => {
-    if (game.isStand === false && game.isDealPressed === true) {
-        let card = randomCard();
-        showCard(card, you);
-        updateScore(card, you);
-        showScore(you);
-    }
-}
-
-const hitButton = document.querySelector(".hit");
-hitButton.addEventListener("click", blackjackHit);
 
 const updateScore = (card, activePlayer) => {
     if (card[0] === "A") {
@@ -98,7 +78,6 @@ const updateScore = (card, activePlayer) => {
     } else {
         activePlayer.score += game.cardsMap[card[0]]
     }
-    console.log(activePlayer.score)
 }
 
 const showScore = (activePlayer) => {
@@ -106,9 +85,68 @@ const showScore = (activePlayer) => {
         document.querySelector(activePlayer.scoreSpan).innerText = `(${activePlayer.score})` + String.fromCodePoint(128565);
         document.querySelector(activePlayer.scoreSpan).style.color = "#c20d06";
         document.querySelector(activePlayer.scoreSpan).style.textShadow = "1px 1px 1px #03071e";
+
+        game.isBust = true;
+        showWinner(dealer);
+
     } else {
         document.querySelector(activePlayer.scoreSpan).innerText = activePlayer.score;
     }
+}
+
+let blackjackHit = (hitButton) => {
+    if (game.isStand === false && game.isDealPressed === true && game.isBust === false) {
+        let card = randomCard();
+        showCard(card, you);
+        updateScore(card, you);
+        showScore(you);
+    }
+}
+
+const hitButton = document.querySelector(".hit");
+hitButton.addEventListener("click", blackjackHit);
+
+const computeWinner = () => {
+    if (you.score <= 21) {
+        if (you.score > dealer.score || dealer.score > 21) {
+            winner = you;
+        } else if (you.score === dealer.score) {
+            winner = "draw";
+        } else {
+            winner = dealer;
+        }
+    } else if (you.score > 21 && dealer.score < 21) {
+        winner = dealer;
+    } else {
+        winner = "none";
+    }
+
+    return winner;
+}
+
+const showWinner = (winner) => {
+    let message = "";
+    let messageColor = "";
+
+    if (winner === you) {
+        message = "You won!!!";
+        messageColor = "#118e64";
+        document.querySelector(".wins").innerText = game.wins += 1;
+    } else if (winner === dealer) {
+        message = "You lost...";
+        messageColor = "#c20d06";
+        document.querySelector(".losses").innerText = game.losses += 1;
+    } else if (winner === "draw") {
+        message = "It's a draw.";
+        messageColor = "#ffbf17";
+        document.querySelector(".draws").innerText = game.draws += 1;
+    } else {
+        message = "No winner...";
+        messageColor = "#0d53b0";
+    }
+
+    document.querySelector(".result").innerText = message;
+    document.querySelector(".result").style.color = messageColor;
 }
 
 const blackjackStand = () => {
@@ -127,6 +165,9 @@ const blackjackStand = () => {
         game.isStand = true;
         game.isTurnsOver = true;
         game.pressOnce = true;
+
+        computeWinner();
+        showWinner(winner);
     }
 }
 
@@ -134,7 +175,7 @@ const standButton = document.querySelector(".stand");
 standButton.addEventListener("click", blackjackStand);
 
 const blackjackDeal = () => {
-    if (game.isTurnsOver === true || game.isDealPressed === false) {
+    if (game.isTurnsOver === true || game.isDealPressed === false || game.isBust === true) {
         let yourImages = document.querySelector(".your-box").querySelectorAll("img");
         let dealerImages = document.querySelector(".dealer-box").querySelectorAll("img");
 
@@ -143,9 +184,11 @@ const blackjackDeal = () => {
 
         document.querySelector(".your-result").textContent = 0;
         document.querySelector(".dealer-result").textContent = 0;
+        document.querySelector(".result").textContent = "Let's Play";
 
         document.querySelector(".your-result").style.color = "#ffe8d6";
         document.querySelector(".dealer-result").style.color = "#ffe8d6";
+        document.querySelector(".result").style.color = "#ffe8d6";
 
         document.querySelector(".your-result").style.textShadow = "none";
         document.querySelector(".dealer-result").style.textShadow = "none";
@@ -161,6 +204,7 @@ const blackjackDeal = () => {
         game.isStand = false;
         game.pressOnce = false;
         game.isTurnsOver = false;
+        game.isBust = false;
         game.isDealPressed = true;
 
         let card = randomCard();
