@@ -43,6 +43,7 @@ const game = {
     isStand: false, // Check whether player has pressed 'Stand' button
     isTurnsOver: false, // Check if PC has finished with dealing cards
     pressOnce: false, // Prevent player from pressing buttons while it's the dealers turn
+    isDealPressed: false,
 }
 
 // Add variables for player and dealer:
@@ -76,7 +77,7 @@ let showCard = (card, activePlayer) => {
 }
 
 let blackjackHit = (hitButton) => {
-    if (game.isStand === false) {
+    if (game.isStand === false && game.isDealPressed === true) {
         let card = randomCard();
         showCard(card, you);
         updateScore(card, you);
@@ -109,3 +110,63 @@ const showScore = (activePlayer) => {
         document.querySelector(activePlayer.scoreSpan).innerText = activePlayer.score;
     }
 }
+
+const blackjackStand = () => {
+    if (game.pressOnce === false) {
+        game.isStand = true;
+        game.isTurnsOver = true;
+        game.pressOnce = true;
+    }
+}
+
+const standButton = document.querySelector(".stand");
+standButton.addEventListener("click", blackjackStand);
+
+const blackjackDeal = () => {
+    if (game.isTurnsOver === true || game.isDealPressed === false) {
+        let yourImages = document.querySelector(".your-box").querySelectorAll("img");
+        let dealerImages = document.querySelector(".dealer-box").querySelectorAll("img");
+
+        you.score = 0;
+        dealer.score = 0;
+
+        document.querySelector(".your-result").textContent = 0;
+        document.querySelector(".dealer-result").textContent = 0;
+
+        document.querySelector(".your-result").style.color = "#ffe8d6";
+        document.querySelector(".dealer-result").style.color = "#ffe8d6";
+
+        document.querySelector(".your-result").style.textShadow = "none";
+        document.querySelector(".dealer-result").style.textShadow = "none";
+
+        for (let i = 0; i < yourImages.length; i++) {
+            yourImages[i].remove();
+        }
+
+        for (let i = 0; i < dealerImages.length; i++) {
+            dealerImages[i].remove();
+        }
+
+        game.isStand = false;
+        game.pressOnce = false;
+        game.isTurnsOver = false;
+        game.isDealPressed = true;
+
+        let card = randomCard();
+        dealerCards(card, dealer);
+    }
+}
+
+const dealerCards = (card, dealer) => {
+    let cardImageOne = document.createElement("img");
+    cardImageOne.src = `./images/back.svg`;
+    document.querySelector(dealer.div).appendChild(cardImageOne);
+    let cardImageTwo = document.createElement("img");
+    cardImageTwo.src = `./images/${card}.svg`;
+    document.querySelector(dealer.div).appendChild(cardImageTwo);
+
+    document.querySelector(dealer.scoreSpan).innerText = "???";
+}
+
+const dealButton = document.querySelector(".deal");
+dealButton.addEventListener("click", blackjackDeal);
