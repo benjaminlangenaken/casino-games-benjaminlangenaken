@@ -112,7 +112,18 @@ const showScore = (activePlayer) => {
 }
 
 const blackjackStand = () => {
-    if (game.pressOnce === false) {
+    if (game.pressOnce === false && game.isDealPressed === true) {
+        let card = randomCard();
+        let dealerCards = document.querySelector(game.dealer.div).querySelectorAll("img");
+        dealerCards[0].src = `./images/${card}.svg`;
+
+        for (i = 0; i < dealerCards.length; i++) {
+            const getValue = dealerCards[i].src.slice(29, -5);
+            updateScore(getValue, dealer)
+        }
+
+        showScore(dealer);
+
         game.isStand = true;
         game.isTurnsOver = true;
         game.pressOnce = true;
