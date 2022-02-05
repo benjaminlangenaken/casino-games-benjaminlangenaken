@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Let's Play | Blackjack</title>
+        <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" type="module"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Let's Play | Blackjack</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-
-<body>
-    <header class="header">
-        <div class="container flex">
-            <h1 class="logo">Black<span style="color: #118e64;">jack</span></h1>
-        </div>
-    </header>
-
-    <div class="container main">
-        <h2><span class="result">Let's Play</span></h2>
-        <div class="flex row-1">
-            <table>
-                <tr>
-                    <th class="win">Wins</th>
-                    <th class="loss">Losses</th>
-                    <th class="draw">Draws</th>
-                </tr>
-                <td><span class="wins">0</span></td>
-                <td><span class="losses">0</span></td>
-                <td><span class="draws">0</span></td>
-            </table>
-        </div>
-
-        <div class="flex row-2">
-            <div class="your-box">
-                <h2>Your score: <span class="your-result">0</span></h2>
+    <body>
+        <header class="header">
+            <div class="container flex">
+                <h1 class="logo">
+                    Black<span style="color: #118e64">jack</span>
+                </h1>
             </div>
-            <div class="dealer-box">
-                <h2>Dealers score: <span class="dealer-result">0</span></h2>
+        </header>
+
+        <div class="container main">
+            <h2><span class="result">Let's Play</span></h2>
+            <div class="flex row-1">
+                <table>
+                    <tr>
+                        <th class="win">Wins</th>
+                        <th class="loss">Losses</th>
+                        <th class="draw">Draws</th>
+                    </tr>
+                    <td><span class="wins">0</span></td>
+                    <td><span class="losses">0</span></td>
+                    <td><span class="draws">0</span></td>
+                </table>
+            </div>
+
+            <div class="flex row-2">
+                <div class="your-box">
+                    <h2>Your score: <span class="your-result">0</span></h2>
+                </div>
+                <div class="dealer-box">
+                    <h2>Dealers score: <span class="dealer-result">0</span></h2>
+                </div>
+            </div>
+
+            <div class="flex row-3">
+                <div><button class="btn hit">Hit</button></div>
+                <div><button class="btn stand">Stand</button></div>
+                <div><button class="btn deal">Deal</button></div>
+                <div><button class="btn restart">Restart</button></div>
             </div>
         </div>
-
-        <div class="flex row-3">
-            <div><button class="btn hit">Hit</button></div>
-            <div><button class="btn stand">Stand</button></div>
-            <div><button class="btn deal">Deal</button></div>
-            <div><button class="btn restart">Restart</button></div>
-        </div>
-    </div>
-
-    <script src="./script.js"></script>
-</body>
-
+    </body>
 </html>
