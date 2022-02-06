@@ -53,12 +53,11 @@ const you = game.player;
 const dealer = game.dealer;
 let winner = "none";
 
-let showHoleCard = () => {
-    let card = game.cards.pop();
-    let cardSrc = `./images/${card.value + card.suit}.svg`;
-    document.querySelector(dealer.div).querySelector("img").src = cardSrc;
-
-    updateScore(card, dealer);
+let showHoleCard = (card) => {
+    for (let i = 0; i < 1; i++) {
+        let cardSrc = `./images/${card.value + card.suit}.svg`;
+        document.querySelector(dealer.div).querySelector("img").src = cardSrc;
+    }
 };
 
 let showCard = (card, activePlayer) => {
@@ -89,8 +88,10 @@ const showScore = (activePlayer) => {
 
         game.isBust = true;
 
-        showHoleCard();
-        showScore(dealer);
+        // showHoleCard();
+        let card = game.cards.pop();
+        showHoleCard(card);
+        updateScore(card, dealer);
 
         showWinner(dealer);
     } else {
@@ -126,6 +127,11 @@ let blackjackHit = (hitButton) => {
         showCard(card, you);
         updateScore(card, you);
         showScore(you);
+
+        // Show dealer score after bust
+        if (you.score > 21) {
+            showScore(dealer);
+        }
     }
 };
 
@@ -181,8 +187,11 @@ const blackjackStand = () => {
         game.isBust === false &&
         game.isHit === true
     ) {
-        showHoleCard();
-        showScore(dealer);
+        // showHoleCard();
+        let card = game.cards.pop();
+        showHoleCard(card);
+        updateScore(card, dealer);
+
         // Keep drawing cards for the dealer if score remains below 17
         while (dealer.score < 17) {
             let card = game.cards.pop();
