@@ -58,6 +58,7 @@ let showHoleCard = () => {
     let cardSrc = `./images/${card.value + card.suit}.svg`;
     document.querySelector(dealer.div).getElementsByTagName("img")[0].src =
         cardSrc;
+    console.log(card);
     return card;
 };
 
@@ -89,7 +90,6 @@ const showScore = (activePlayer) => {
 
         game.isBust = true;
 
-        showHoleCard();
         updateScore(showHoleCard(), dealer);
 
         showWinner(dealer);
@@ -180,8 +180,7 @@ const showWinner = (winner) => {
 };
 
 let executeFirst = () => {
-    let card = showHoleCard();
-    updateScore(card, dealer);
+    updateScore(showHoleCard(), dealer);
     showScore(dealer);
 };
 
