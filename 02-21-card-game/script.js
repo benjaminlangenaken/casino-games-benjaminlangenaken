@@ -53,11 +53,12 @@ const you = game.player;
 const dealer = game.dealer;
 let winner = "none";
 
-let showHoleCard = (card) => {
-    for (let i = 0; i < 1; i++) {
-        let cardSrc = `./images/${card.value + card.suit}.svg`;
-        document.querySelector(dealer.div).querySelector("img").src = cardSrc;
-    }
+let showHoleCard = () => {
+    let card = game.cards.pop();
+    let cardSrc = `./images/${card.value + card.suit}.svg`;
+    document.querySelector(dealer.div).getElementsByTagName("img")[0].src =
+        cardSrc;
+    return card;
 };
 
 let showCard = (card, activePlayer) => {
@@ -88,10 +89,8 @@ const showScore = (activePlayer) => {
 
         game.isBust = true;
 
-        // showHoleCard();
-        let card = game.cards.pop();
-        showHoleCard(card);
-        updateScore(card, dealer);
+        showHoleCard();
+        updateScore(showHoleCard(), dealer);
 
         showWinner(dealer);
     } else {
@@ -180,6 +179,22 @@ const showWinner = (winner) => {
     document.querySelector(".result").style.color = messageColor;
 };
 
+let executeFirst = () => {
+    let card = showHoleCard();
+    updateScore(card, dealer);
+    showScore(dealer);
+};
+
+let executeSecond = () => {
+    let card = game.cards.pop();
+    let cardImage = document.createElement("img");
+    cardImage.src = `./images/${card.value + card.suit}.svg`;
+    document.querySelector(dealer.div).appendChild(cardImage);
+
+    updateScore(card, dealer);
+    showScore(dealer);
+};
+
 const blackjackStand = () => {
     if (
         game.pressOnce === false &&
@@ -188,22 +203,14 @@ const blackjackStand = () => {
         game.isHit === true
     ) {
         // showHoleCard();
-        let card = game.cards.pop();
-        showHoleCard(card);
-        updateScore(card, dealer);
+        executeFirst();
 
         // Keep drawing cards for the dealer if score remains below 17
         while (dealer.score < 17) {
-            let card = game.cards.pop();
-            let cardImage = document.createElement("img");
-            cardImage.src = `./images/${card.value + card.suit}.svg`;
-            document.querySelector(dealer.div).appendChild(cardImage);
-
-            updateScore(card, dealer);
-            showScore(dealer);
+            executeSecond();
         }
 
-        game.isStand = true;
+        game.isStand === true;
         game.isTurnsOver = true;
         game.pressOnce = true;
 
@@ -274,6 +281,7 @@ const dealerCards = (card, dealer) => {
     let cardImageOne = document.createElement("img");
     cardImageOne.src = `./images/back.svg`;
     document.querySelector(dealer.div).appendChild(cardImageOne);
+
     let cardImageTwo = document.createElement("img");
     cardImageTwo.src = `./images/${card.value + card.suit}.svg`;
     document.querySelector(dealer.div).appendChild(cardImageTwo);
@@ -309,12 +317,11 @@ const blackjackRestart = () => {
 const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", blackjackRestart);
 
-if (game.cards.length === 0) {
-}
+// if (game.cards.length === 0) {
+// }
 // window.onload = animateButtons = () => {
 //         const animation =
 //     if (game.isDealPressed === false) {
 //         document.querySelector(".deal").style.animation = "scale(1.2)";
 //         document.querySelector(".deal").style.transition = "1s ease-in-out";
 //     }
-// }
